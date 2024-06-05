@@ -14,7 +14,8 @@
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
     <!-- Sidebar Start -->
-    <aside class="left-sidebar">
+     <!-- Sidebar Start -->
+     <aside class="left-sidebar">
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
@@ -47,19 +48,27 @@
             <li class="sidebar-item">
               <a class="sidebar-link" href="./ui-menu.html" aria-expanded="false">
                 <span>
-                  <i class="ti ti-article"></i>
+                  <i class="ti ti-apple"></i>
                 </span>
-                <span class="hide-menu">Dish List</span>
+                <span class="hide-menu">Món ăn</span>
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" href="./ui-staff.html" aria-expanded="false">
+              <a class="sidebar-link" href="./ui-ware-house-staff.html" aria-expanded="false">
                 <span>
                   <i class="ti ti-article"></i>
                 </span>
-                <span class="hide-menu">Staff Information</span>
+                <span class="hide-menu">Nhân viên kho</span>
               </a>
            </li>
+           <li class="sidebar-item">
+            <a class="sidebar-link" href="./ui-waiter-staff.html" aria-expanded="false">
+              <span>
+                <i class="ti ti-article"></i>
+              </span>
+              <span class="hide-menu">Nhân viên bàn</span>
+            </a>
+         </li>
             <li class="sidebar-item">
               <a class="sidebar-link" href="./ui-buttons.html" aria-expanded="false">
                 <span>
@@ -211,13 +220,13 @@
       <div class="col-lg-12 d-flex align-items-stretch">
         <div class="card w-100">
           <div class="card-body p-4">
-            <h5 class="card-title fw-semibold mb-4">Top dishes</h5>
+            <h5 class="card-title fw-semibold mb-4">Thông tin nhân viên kho</h5>
             <div class="table-responsive">
               <table class="table text-nowrap mb-0 align-middle">
                 <thead class="text-dark fs-4">
                   <tr>
                     <th class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0">Id Nhân viên</h6>
+                      <h6 class="fw-semibold mb-0">ID</h6>
                     </th>
                     <th class="border-bottom-0">
                       <h6 class="fw-semibold mb-0">Tên Nhân Viên</h6>
@@ -231,196 +240,45 @@
                     <th class="border-bottom-0">
                       <h6 class="fw-semibold mb-0">Chức vụ</h6>
                     </th>
-                    <th class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0">ID Người dùng</h6>
-                    </th>
-                    <th class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0">ID Người quản lý</h6>
-                    </th>
-                    
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
                     <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">Sunil Joshi</h6>
-                        <span class="fw-normal">Head Chef</span>                          
+                        <h6 class="fw-semibold mb-1">Sunil Joshi</h6>                         
                     </td>
                     <td class="border-bottom-0">
-                      <p class="mb-0 fw-normal">Wellington beef</p>
+                      <p class="mb-0 fw-normal">01/01/2024</p>
+                    </td>
+                    <td class="border-bottom-0">
+                      <p class="mb-0 fw-normal">0835176988</p>
                     </td>
                     <td class="border-bottom-0">
                       <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-primary rounded-3 fw-semibold">Low</span>
+                        <span class="badge bg-success rounded-3 fw-semibold">Quản Lý</span>
                       </div>
                     </td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0 fs-4">$3.9</h6>
-                    </td>
+                    
                   </tr> 
                   <tr>
-                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">2</h6></td>
+                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
                     <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">Andrew McDownland</h6>
-                        <span class="fw-normal">Station Chef</span>                          
+                        <h6 class="fw-semibold mb-1">Sunil Joshi</h6>                         
                     </td>
                     <td class="border-bottom-0">
-                      <p class="mb-0 fw-normal">Foie gras parfait</p>
+                      <p class="mb-0 fw-normal">01/01/2024</p>
                     </td>
                     <td class="border-bottom-0">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-secondary rounded-3 fw-semibold">Medium</span>
-                      </div>
-                    </td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0 fs-4">$24.5k</h6>
-                    </td>
-                  </tr> 
-                  <tr>
-                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">3</h6></td>
-                    <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">Christopher Jamil</h6>
-                        <span class="fw-normal">Sous Chef</span>                          
-                    </td>
-                    <td class="border-bottom-0">
-                      <p class="mb-0 fw-normal">Ratatouille</p>
+                      <p class="mb-0 fw-normal">0835176988</p>
                     </td>
                     <td class="border-bottom-0">
                       <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-danger rounded-3 fw-semibold">High</span>
+                        <span class="badge bg-info rounded-3 fw-semibold">Nhân viên</span>
                       </div>
                     </td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0 fs-4">$12.8k</h6>
-                    </td>
-                  </tr>      
-                  <tr>
-                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">4</h6></td>
-                    <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">Nirav Joshi</h6>
-                        <span class="fw-normal">Head Chef</span>                          
-                    </td>
-                    <td class="border-bottom-0">
-                      <p class="mb-0 fw-normal">Pain au Chocolat</p>
-                    </td>
-                    <td class="border-bottom-0">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-success rounded-3 fw-semibold">Critical</span>
-                      </div>
-                    </td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0 fs-4">$2.4k</h6>
-                    </td>
-                  </tr> 
-                  <tr>
-                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">5</h6></td>
-                    <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">Nirav Joshi</h6>
-                        <span class="fw-normal">Head Chef</span>                          
-                    </td>
-                    <td class="border-bottom-0">
-                      <p class="mb-0 fw-normal">Pain au Chocolat</p>
-                    </td>
-                    <td class="border-bottom-0">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-success rounded-3 fw-semibold">Critical</span>
-                      </div>
-                    </td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0 fs-4">$2.4k</h6>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">6</h6></td>
-                    <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">Nirav Joshi</h6>
-                        <span class="fw-normal">Head Chef</span>                          
-                    </td>
-                    <td class="border-bottom-0">
-                      <p class="mb-0 fw-normal">Pain au Chocolat</p>
-                    </td>
-                    <td class="border-bottom-0">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-success rounded-3 fw-semibold">Critical</span>
-                      </div>
-                    </td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0 fs-4">$2.4k</h6>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">7</h6></td>
-                    <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">Nirav Joshi</h6>
-                        <span class="fw-normal">Head Chef</span>                          
-                    </td>
-                    <td class="border-bottom-0">
-                      <p class="mb-0 fw-normal">Pain au Chocolat</p>
-                    </td>
-                    <td class="border-bottom-0">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-success rounded-3 fw-semibold">Critical</span>
-                      </div>
-                    </td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0 fs-4">$2.4k</h6>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">8</h6></td>
-                    <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">Nirav Joshi</h6>
-                        <span class="fw-normal">Head Chef</span>                          
-                    </td>
-                    <td class="border-bottom-0">
-                      <p class="mb-0 fw-normal">Pain au Chocolat</p>
-                    </td>
-                    <td class="border-bottom-0">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-success rounded-3 fw-semibold">Critical</span>
-                      </div>
-                    </td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0 fs-4">$2.4k</h6>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">9</h6></td>
-                    <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">Nirav Joshi</h6>
-                        <span class="fw-normal">Head Chef</span>                          
-                    </td>
-                    <td class="border-bottom-0">
-                      <p class="mb-0 fw-normal">Pain au Chocolat</p>
-                    </td>
-                    <td class="border-bottom-0">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-success rounded-3 fw-semibold">Critical</span>
-                      </div>
-                    </td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0 fs-4">$2.4k</h6>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="border-bottom-0"><h6 class="fw-semibold mb-0">10</h6></td>
-                    <td class="border-bottom-0">
-                        <h6 class="fw-semibold mb-1">Nirav Joshi</h6>
-                        <span class="fw-normal">Head Chef</span>                          
-                    </td>
-                    <td class="border-bottom-0">
-                      <p class="mb-0 fw-normal">Pain au Chocolat</p>
-                    </td>
-                    <td class="border-bottom-0">
-                      <div class="d-flex align-items-center gap-2">
-                        <span class="badge bg-success rounded-3 fw-semibold">Critical</span>
-                      </div>
-                    </td>
-                    <td class="border-bottom-0">
-                      <h6 class="fw-semibold mb-0 fs-4">$2.4k</h6>
-                    </td>
-                  </tr>                    
+                    
+                  </tr>                
                                         
                                 
                 </tbody>
