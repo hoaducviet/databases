@@ -75,6 +75,7 @@ CREATE TABLE MonAn (
     DonGia DECIMAL(10,0),
     Loai VARCHAR(250),
     TrangThai VARCHAR(250),
+    DauBep VARCHAR (250),
     PRIMARY KEY (ID_MonAn)
 );
  
