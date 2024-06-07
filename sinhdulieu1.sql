@@ -1,5 +1,5 @@
 -- Bảng KhachHang
-INSERT INTO KhachHang (TenKH, Ngaygiamgia, Doanhso, Diemtichluy)
+INSERT INTO KhachHang (TenKH, Ngaythamgia, Doanhso, Diemtichluy)
 VALUES
 ('Nguyễn Văn A', '2023-01-01', 1500000.00, 120.00),
 ('Trần Thị B', '2023-01-15', 2000000.00, 150.00),

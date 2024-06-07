@@ -1,7 +1,7 @@
 CREATE TABLE KhachHang (
     ID_KH INT auto_increment,
     TenKH VARCHAR(250),
-    Ngaygiamgia DATE,
+    Ngaythamgia DATE,
     Doanhso DECIMAL(10,0),
     Diemtichluy DECIMAL(5,0),
     PRIMARY KEY (ID_KH)
