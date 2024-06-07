@@ -68,21 +68,6 @@ CREATE TABLE Ban (
     PRIMARY KEY (ID_Ban)
 );
 
-CREATE TABLE HoaDon (
-    ID_HoaDon INT,
-    ID_NV INT,
-    ID_KH INT,
-    ID_Ban INT,
-    NgayHD DATE,
-    Code_Voucher VARCHAR(210),
-    TienGiam DECIMAL(10,0),
-    Tongtien DECIMAL(10,0),
-    Trangthai VARCHAR(250),
-    PRIMARY KEY (ID_HoaDon),
-    FOREIGN KEY (ID_NV) REFERENCES NhanVienBan(ID_NV),
-    FOREIGN KEY (ID_KH) REFERENCES KhachHang(ID_KH),
-    FOREIGN KEY (ID_Ban) REFERENCES Ban(ID_Ban)
-);
 
 CREATE TABLE MonAn (
     ID_MonAn INT,
@@ -93,15 +78,7 @@ CREATE TABLE MonAn (
     PRIMARY KEY (ID_MonAn)
 );
 
-CREATE TABLE CTHD (
-    ID_HoaDon INT,
-    ID_MonAn INT,
-    SoLuong INT,
-    ThanhTien DECIMAL(10,0),
-    PRIMARY KEY (ID_HoaDon, ID_MonAn),
-    FOREIGN KEY (ID_HoaDon) REFERENCES HoaDon(ID_HoaDon),
-    FOREIGN KEY (ID_MonAn) REFERENCES MonAn(ID_MonAn)
-);
+
 
 
 CREATE TABLE Voucher (
@@ -111,8 +88,7 @@ CREATE TABLE Voucher (
     LoaiMA VARCHAR(250),
     SoLuong INT,
     Diem DECIMAL(10,0),
-    PRIMARY KEY (Code_Voucher),
-    FOREIGN KEY (Code_Voucher) REFERENCES HoaDon(Code_Voucher)
+    PRIMARY KEY (Code_Voucher)
 );
 
 CREATE TABLE NguyenLieu (
@@ -129,6 +105,34 @@ CREATE TABLE Kho (
     PRIMARY KEY (ID_NL),
     FOREIGN KEY (ID_NL) REFERENCES NguyenLieu(ID_NL)
 );
+
+CREATE TABLE HoaDon (
+    ID_HoaDon INT,
+    ID_NV INT,
+    ID_KH INT,
+    ID_Ban INT,
+    NgayHD DATE,
+    Code_Voucher VARCHAR(210),
+    TienGiam DECIMAL(10,0),
+    Tongtien DECIMAL(10,0),
+    Trangthai VARCHAR(250),
+    PRIMARY KEY (ID_HoaDon),
+    FOREIGN KEY (ID_NV) REFERENCES NhanVienBan(ID_NV),
+    FOREIGN KEY (ID_KH) REFERENCES KhachHang(ID_KH),
+    FOREIGN KEY (ID_Ban) REFERENCES Ban(ID_Ban),
+    FOREIGN KEY (Code_Voucher) references Voucher(Code_Voucher)
+);
+
+CREATE TABLE CTHD (
+    ID_HoaDon INT,
+    ID_MonAn INT,
+    SoLuong INT,
+    ThanhTien DECIMAL(10,0),
+    PRIMARY KEY (ID_HoaDon, ID_MonAn),
+    FOREIGN KEY (ID_HoaDon) REFERENCES HoaDon(ID_HoaDon),
+    FOREIGN KEY (ID_MonAn) REFERENCES MonAn(ID_MonAn)
+);
+
 
 CREATE TABLE CTNK (
     ID_NK INT,
