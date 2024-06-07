@@ -1,14 +1,14 @@
--- Cập nhật số điện thoại của một nhân viên bằng tên
+-- Cập nhật số điện thoại của một nhân viên bằng ID_NV
 UPDATE NhanVienBan
 SET SDT = '0911222333'
-WHERE TenNV = 'Nguyễn Văn A';
--- Thay đổi số điện thoại và tên nhân viên tùy theo nhu cầu.
+WHERE ID_NV = 1;
+-- Bạn có thể thay đổi số điện thoại và ID_NV tùy theo nhu cầu.
 
--- Cập nhật trạng thái của một bàn từ "Trống" thành "Đầy" bằng tên bàn
+-- Cập nhật trạng thái của một bàn từ "Trống" thành "Đầy" bằng ID_Ban
 UPDATE Ban
 SET Trangthai = 'Đầy'
-WHERE TenBan = 'Ban A';
--- Thay đổi tên bàn để cập nhật trạng thái bàn khác.
+WHERE ID_Ban = 1;
+-- Thay đổi ID_Ban để cập nhật trạng thái bàn khác.
 
 -- Thêm một khách hàng mới vào bảng KhachHang
 INSERT INTO KhachHang (TenKH, Ngaygiamgia, Doanhso, Diemtichluy)
@@ -50,11 +50,11 @@ INSERT INTO CTXK (ID_XK, ID_NL, SoLuong)
 VALUES (1, 1, 30);
 -- Thay đổi thông tin chi tiết phiếu xuất kho như ID phiếu, ID nguyên liệu và số lượng.
 
--- Cập nhật đơn giá của một món ăn trong bảng MonAn bằng tên món ăn
+-- Cập nhật đơn giá của một món ăn trong bảng MonAn
 UPDATE MonAn
 SET DonGia = 40000.00
-WHERE TenMon = 'Phở';
--- Thay đổi tên món ăn và đơn giá để cập nhật món ăn khác.
+WHERE ID_MonAn = 1;
+-- Thay đổi ID_MonAn và đơn giá để cập nhật món ăn khác.
 
 -- Cập nhật trạng thái của voucher trong bảng Voucher
 UPDATE Voucher
@@ -62,36 +62,19 @@ SET Trangthai = 'Hết hạn'
 WHERE Code_Voucher = 'SUMMER2023';
 -- Thay đổi mã voucher và trạng thái tùy nhu cầu.
 
--- Xóa thông tin nhân viên khỏi bảng NhanVienBan khi nhân viên nghỉ việc bằng tên nhân viên
+-- Xóa thông tin nhân viên khỏi bảng NhanVienBan khi nhân viên nghỉ việc bằng ID_NV
 DELETE FROM NhanVienBan
-WHERE TenNV = 'Nguyễn Văn A';
--- Thay đổi tên nhân viên để xóa thông tin nhân viên khác.
+WHERE ID_NV = 1;
+-- Thay đổi ID_NV để xóa thông tin nhân viên khác.
 
--- Xóa thông tin nhân viên khỏi bảng NhanVienKho khi nhân viên nghỉ việc bằng tên nhân viên
+-- Xóa thông tin nhân viên khỏi bảng NhanVienKho khi nhân viên nghỉ việc bằng ID_NV
 DELETE FROM NhanVienKho
-WHERE TenNV = 'Nguyễn Văn I';
--- Thay đổi tên nhân viên để xóa thông tin nhân viên khác.
+WHERE ID_NV = 1;
+-- Thay đổi ID_NV để xóa thông tin nhân viên khác.
 
--- Cập nhật trạng thái của người dùng khi nhân viên nghỉ việc trong bảng NguoiDung (chuyển trạng thái sang "inactive") bằng tên nhân viên
+-- Cập nhật trạng thái của người dùng khi nhân viên nghỉ việc trong bảng NguoiDung (chuyển trạng thái sang "inactive")
 UPDATE NguoiDung
 SET Trangthai = 'inactive'
-WHERE ID_ND = (SELECT ID_ND FROM NhanVienBan WHERE TenNV = 'Nguyễn Văn A');
+WHERE ID_ND = (SELECT ID_ND FROM NhanVienBan WHERE ID_NV = 1);
 
-UPDATE NguoiDung
-SET Trangthai = 'inactive'
-WHERE ID_ND = (SELECT ID_ND FROM NhanVienKho WHERE TenNV = 'Nguyễn Văn I');
-
--- Xóa thông tin khách hàng bằng tên khách hàng
-DELETE FROM KhachHang
-WHERE TenKH = 'Nguyễn Văn E';
--- Thay đổi tên khách hàng để xóa thông tin khách hàng khác.
-
--- Xóa một món ăn khỏi thực đơn bằng tên món ăn
-DELETE FROM MonAn
-WHERE TenMon = 'Gỏi cuốn';
--- Thay đổi tên món ăn để xóa món ăn khác.
-
--- Xóa một voucher khi đã hết số lượng bằng mã voucher
-DELETE FROM Voucher
-WHERE Code_Voucher = 'SPRING2023';
--- Thay đổi mã voucher để xóa voucher khác.
+UPDATE N
