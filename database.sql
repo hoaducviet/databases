@@ -1,14 +1,14 @@
 CREATE TABLE KhachHang (
-    ID_KH INT,
+    ID_KH INT auto_increment,
     TenKH VARCHAR(250),
-    Ngayhamgia DATE,
+    Ngaygiamgia DATE,
     Doanhso DECIMAL(10,0),
     Diemtichluy DECIMAL(5,0),
     PRIMARY KEY (ID_KH)
 );
  
 CREATE TABLE NguoiDung (
-    ID_ND INT,
+    ID_ND INT auto_increment ,
     Email VARCHAR(250),
     Matkhau VARCHAR(250),
     VerifyCode VARCHAR(210),
@@ -18,7 +18,7 @@ CREATE TABLE NguoiDung (
 );
  
 CREATE TABLE NhanVienKho (
-    ID_NV INT,
+    ID_NV INT auto_increment,
     TenNV VARCHAR(250),
     NgayVL DATE,
     SDT VARCHAR(250),
@@ -31,7 +31,7 @@ CREATE TABLE NhanVienKho (
 );
  
 CREATE TABLE NhanVienBan (
-    ID_NV INT,
+    ID_NV INT auto_increment ,
     TenNV VARCHAR(250),
     NgayVL DATE,
     SDT VARCHAR(250),
@@ -44,7 +44,7 @@ CREATE TABLE NhanVienBan (
 );
  
 CREATE TABLE PhieuNK (
-    ID_NK INT,
+    ID_NK INT auto_increment,
     ID_NV INT,
     NgayNK DATE,
     Tongtien DECIMAL(10,0),
@@ -53,7 +53,7 @@ CREATE TABLE PhieuNK (
 );
  
 CREATE TABLE PhieuXK (
-    ID_XK INT,
+    ID_XK INT auto_increment ,
     ID_NV INT,
     NgayNK DATE,
     PRIMARY KEY (ID_XK),
@@ -61,7 +61,7 @@ CREATE TABLE PhieuXK (
 );
  
 CREATE TABLE Ban (
-    ID_Ban INT,
+    ID_Ban INT auto_increment ,
     TenBan VARCHAR(250),
     Vitri VARCHAR(250),
     Trangthai VARCHAR(250),
@@ -70,12 +70,12 @@ CREATE TABLE Ban (
  
  
 CREATE TABLE MonAn (
-    ID_MonAn INT,
+    ID_MonAn INT auto_increment ,
     TenMon VARCHAR(250),
     DonGia DECIMAL(10,0),
     Loai VARCHAR(250),
     TrangThai VARCHAR(250),
-    DauBep VARCHAR (250),
+    DauBep varchar (250),
     PRIMARY KEY (ID_MonAn)
 );
  
@@ -92,7 +92,7 @@ CREATE TABLE Voucher (
 );
  
 CREATE TABLE NguyenLieu (
-    ID_NL INT,
+    ID_NL INT auto_increment ,
     TenNL VARCHAR(250),
     DonGia DECIMAL(10,0),
     DonViTinh VARCHAR(250),
@@ -100,14 +100,14 @@ CREATE TABLE NguyenLieu (
 );
  
 CREATE TABLE Kho (
-    ID_NL INT,
+    ID_NL INT auto_increment ,
     SLTon INT,
     PRIMARY KEY (ID_NL),
     FOREIGN KEY (ID_NL) REFERENCES NguyenLieu(ID_NL)
 );
  
 CREATE TABLE HoaDon (
-    ID_HoaDon INT,
+    ID_HoaDon INT auto_increment,
     ID_NV INT,
     ID_KH INT,
     ID_Ban INT,
@@ -124,7 +124,7 @@ CREATE TABLE HoaDon (
 );
  
 CREATE TABLE CTHD (
-    ID_HoaDon INT,
+    ID_HoaDon INT auto_increment ,
     ID_MonAn INT,
     SoLuong INT,
     ThanhTien DECIMAL(10,0),
@@ -135,7 +135,7 @@ CREATE TABLE CTHD (
  
  
 CREATE TABLE CTNK (
-    ID_NK INT,
+    ID_NK INT auto_increment ,
     ID_NL INT,
     SoLuong INT,
     Thanhtoan INT,
@@ -145,7 +145,7 @@ CREATE TABLE CTNK (
 );
  
 CREATE TABLE CTXK (
-    ID_XK INT,
+    ID_XK INT auto_increment ,
     ID_NL INT,
     SoLuong INT,
     PRIMARY KEY (ID_XK, ID_NL),
