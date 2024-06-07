@@ -56,11 +56,6 @@ SET DonGia = 40000.00
 WHERE ID_MonAn = 1;
 -- Thay đổi ID_MonAn và đơn giá để cập nhật món ăn khác.
 
--- Cập nhật trạng thái của voucher trong bảng Voucher
-UPDATE Voucher
-SET Trangthai = 'Hết hạn'
-WHERE Code_Voucher = 'SUMMER2023';
--- Thay đổi mã voucher và trạng thái tùy nhu cầu.
 
 -- Xóa thông tin nhân viên khỏi bảng NhanVienBan khi nhân viên nghỉ việc bằng ID_NV
 DELETE FROM NhanVienBan
