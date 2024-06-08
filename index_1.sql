@@ -27,3 +27,6 @@ CREATE INDEX idx_ngayxk ON PhieuXK(NgayNK);
 
 -- Tạo chỉ mục cho bảng Ban trên cột Vitri
 CREATE INDEX idx_vitri ON Ban(Vitri);
+
+
+
