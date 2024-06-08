@@ -67,34 +67,45 @@ END;
 DELIMITER ;
 
 -- Trigger để kiểm tra và tự động cập nhật trạng thái của bàn khi có thay đổi về hóa đơn
+-- Trigger để cập nhật trạng thái của bàn khi thêm hóa đơn
 DELIMITER //
 CREATE TRIGGER after_insert_hoa_don_ban
 AFTER INSERT ON HoaDon
 FOR EACH ROW
 BEGIN
-    UPDATE Ban
-    SET Trangthai = 'Đầy'
-    WHERE ID_Ban = NEW.ID_Ban;
-END;
-//
-DELIMITER ;
-
--- Trigger để kiểm tra và tự động cập nhật trạng thái của bàn khi xóa hóa đơn
-DELIMITER //
-CREATE TRIGGER after_delete_hoa_don_ban
-AFTER DELETE ON HoaDon
-FOR EACH ROW
-BEGIN
-    DECLARE total INT;
-    SELECT COUNT(*) INTO total FROM HoaDon WHERE ID_Ban = OLD.ID_Ban;
-    IF total = 0 THEN
+    IF NEW.Trangthai = 'Đã thanh toán' THEN
         UPDATE Ban
         SET Trangthai = 'Trống'
-        WHERE ID_Ban = OLD.ID_Ban;
+        WHERE ID_Ban = NEW.ID_Ban;
+    ELSEIF NEW.Trangthai = 'Chưa thanh toán' THEN
+        UPDATE Ban
+        SET Trangthai = 'Đầy'
+        WHERE ID_Ban = NEW.ID_Ban;
     END IF;
 END;
 //
 DELIMITER ;
+
+-- Trigger để cập nhật trạng thái của bàn khi sửa hóa đơn
+DELIMITER //
+CREATE TRIGGER after_update_hoa_don_ban
+AFTER UPDATE ON HoaDon
+FOR EACH ROW
+BEGIN
+    IF NEW.Trangthai = 'Đã thanh toán' THEN
+        UPDATE Ban
+        SET Trangthai = 'Trống'
+        WHERE ID_Ban = NEW.ID_Ban;
+    ELSEIF NEW.Trangthai = 'Chưa thanh toán' THEN
+        UPDATE Ban
+        SET Trangthai = 'Đầy'
+        WHERE ID_Ban = NEW.ID_Ban;
+    END IF;
+END;
+//
+DELIMITER ;
+
+
 
 -- Trigger để kiểm tra và tự động cập nhật trạng thái của voucher khi sử dụng
 DELIMITER //
