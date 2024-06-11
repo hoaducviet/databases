@@ -8,7 +8,8 @@ const PhieuXK = function (phieuxuatkho) {
 
 
 PhieuXK.get_all = function(result){
-    db.query("SELECT * FROM PhieuXK", function(err, phieunhapkho){
+    const query = "SELECT PhieuXK.ID_XK, NhanVienKho.TenNV, PhieuXK.NgayXK FROM PhieuXK JOIN NhanVienKho ON PhieuXK.ID_NV = NhanVienKho.ID_NV"
+    db.query(query, function(err, phieunhapkho){
         if(err){
             result(err);
         } else {

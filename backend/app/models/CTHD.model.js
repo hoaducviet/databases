@@ -19,8 +19,8 @@ CTHD.get_all = function(result){
 
 
 CTHD.getById = function(id, result) {
-    console.log(id)
-    db.query(`SELECT * FROM CTHD where id_hoadon = ${id}`, function(err, user){
+    const query = `SELECT HoaDon.ID_HoaDon, MonAn.TenMon, CTHD.SoLuong, CTHD.ThanhTien FROM CTHD JOIN HoaDon ON CTHD.ID_HoaDon = HoaDon.ID_HoaDon JOIN MonAn ON CTHD.ID_MonAn = MonAn.ID_MonAn WHERE HoaDon.ID_HoaDon=${id}`
+    db.query(query, function(err, user){
         if(err || user.length == 0){
             result(null);
         } else {

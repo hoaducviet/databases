@@ -14,7 +14,8 @@ const HoaDon = function (hoadon) {
 
 
 HoaDon.get_all = function(result){
-    db.query("SELECT * FROM HoaDon", function(err, hoadon){
+    const query = "SELECT HoaDon.ID_HoaDon, KhachHang.TenKH, NhanVienBan.TenNV, Ban.TenBan, HoaDon.NgayHD, HoaDon.Tongtien, HoaDon.Trangthai FROM HoaDon JOIN KhachHang ON HoaDon.ID_KH = KhachHang.ID_KH JOIN NhanVienBan ON HoaDon.ID_NV = NhanVienBan.ID_NV JOIN Ban ON HoaDon.ID_Ban = Ban.ID_Ban;"
+    db.query(query, function(err, hoadon){
         if(err){
             result(err);
         } else {
@@ -24,9 +25,23 @@ HoaDon.get_all = function(result){
 }
 
 
+HoaDon.get_chartWeek = function(result){
+    const query = "SELECT NgayHD, sum(Tongtien) as TongTien FROM HoaDon WHERE Trangthai='Đã thanh toán' GROUP BY NgayHD ORDER BY NgayHD DESC LIMIT 7"
+      db.query(query, function(err, hoadon){
+        if(err){
+            result(err);
+        } else {
+            result(hoadon)
+        }
+    })
+}
+
+
+
 HoaDon.getById = function(id, result) {
-    console.log(id)
-    db.query(`SELECT * FROM HoaDon where id_hoadon = ${id}`, function(err, user){
+    const query = `SELECT HoaDon.ID_HoaDon, KhachHang.TenKH, NhanVienBan.TenNV, Ban.TenBan, HoaDon.NgayHD, HoaDon.Tongtien, HoaDon.Trangthai FROM HoaDon JOIN KhachHang ON HoaDon.ID_KH = KhachHang.ID_KH JOIN NhanVienBan ON HoaDon.ID_NV = NhanVienBan.ID_NV JOIN Ban ON HoaDon.ID_Ban = Ban.ID_Ban WHERE HoaDon.ID_HoaDon = ${id}`
+
+    db.query(query, function(err, user){
         if(err || user.length == 0){
             result(null);
         } else {
@@ -34,6 +49,7 @@ HoaDon.getById = function(id, result) {
         }
     })
 }
+
 
 
 HoaDon.create = function(data, result) {

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import * as React from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -26,55 +26,50 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
+
   "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
 
-function Staffwaiter() {
-  const [staffs, setStaffs] = useState([]);
+function TopDishNumber() {
+  const [dishesTopNumber, setDishesTopNumber] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:500/manager/staffwaiter")
+      .get("http://localhost:500/manager/dish/topnumber")
       .then((response) => {
-        setStaffs(response.data.data);
+        setDishesTopNumber(response.data.data);
       })
       .catch((error) => {
         console.error("There was an error!", error);
       });
   }, []);
-  console.log(staffs);
+
   return (
-    <>
-      <h1>Danh Sách Nhân Viên Bàn</h1>
-      {staffs.length > 0 ? (
+    <div>
+      {dishesTopNumber.length > 0 ? (
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
+          <Table aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>ID Nhân Viên</StyledTableCell>
-                <StyledTableCell align="left">Tên Nhân Viên</StyledTableCell>
-                <StyledTableCell align="left">Ngày Vào Làm</StyledTableCell>
-                <StyledTableCell align="left">SĐT</StyledTableCell>
-                <StyledTableCell align="left">Chức Vụ</StyledTableCell>
+                <StyledTableCell>ID</StyledTableCell>
+                <StyledTableCell align="left">Đầu bếp</StyledTableCell>
+                <StyledTableCell align="left">Tên món</StyledTableCell>
+                <StyledTableCell align="left">Đơn giá</StyledTableCell>
+                <StyledTableCell align="left">Số lượng</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {staffs.map((staff, index) => (
+              {dishesTopNumber.map((dish, index) => (
                 <StyledTableRow key={index}>
                   <StyledTableCell component="th" scope="row">
-                    {staff.ID_NV}
+                    {dish.ID_MonAn}
                   </StyledTableCell>
-                  <StyledTableCell align="left">{staff.TenNV}</StyledTableCell>
-                  <StyledTableCell align="left">
-                    {new Date(staff.NgayVL).toLocaleDateString()}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">{staff.SDT}</StyledTableCell>
-                  <StyledTableCell align="left">
-                    {staff.Chucvu}
-                  </StyledTableCell>
+                  <StyledTableCell align="left">{dish.DauBep}</StyledTableCell>
+                  <StyledTableCell align="left">{dish.TenMon}</StyledTableCell>
+                  <StyledTableCell align="left">{dish.DonGia}</StyledTableCell>
+                  <StyledTableCell align="left">{dish.SoLuong}</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
@@ -83,8 +78,8 @@ function Staffwaiter() {
       ) : (
         <p>Loading...</p>
       )}
-    </>
+    </div>
   );
 }
 
-export default Staffwaiter;
+export default TopDishNumber;

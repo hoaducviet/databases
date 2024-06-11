@@ -38,7 +38,7 @@ CREATE TABLE NhanVienKho (
     PRIMARY KEY (ID_NV),
     FOREIGN KEY (ID_NQL) REFERENCES NhanVienKho(ID_NV),
     FOREIGN KEY (ID_ND) REFERENCES NguoiDung(ID_ND),
-    CHECK (Chucvu in ('staff', 'manager'))
+    CHECK (Chucvu in ('Nhân viên', 'Quản lý'))
 );
 
 CREATE TABLE NhanVienBan (
@@ -52,7 +52,7 @@ CREATE TABLE NhanVienBan (
     PRIMARY KEY (ID_NV),
     FOREIGN KEY (ID_NQL) REFERENCES NhanVienBan(ID_NV),
     FOREIGN KEY (ID_ND) REFERENCES NguoiDung(ID_ND),
-    CHECK (Chucvu in ('waiter', 'cashier', 'manager'))
+    CHECK (Chucvu in ('Phục vụ', 'Thu ngân', 'Quản lý'))
 );
 
 CREATE TABLE PhieuNK (
@@ -117,7 +117,8 @@ CREATE TABLE MonAn (
     DonGia DECIMAL(10,0) not null,
     Loai VARCHAR(250) not null,
     TrangThai VARCHAR(250),
-    DauBep varchar (250),
+    DauBep VARCHAR(250),
+    DanhGia DECIMAL(10,2),
     ImageUrl VARCHAR(250) null,
     PRIMARY KEY (ID_MonAn)
 );
@@ -192,19 +193,19 @@ VALUES
 
 INSERT INTO NhanVienBan (TenNV, NgayVL, SDT, Chucvu, ID_ND, ID_NQL)
 VALUES
-('Phạm Đình D', '2023-01-02', '0912345678', 'manager', 1, 1),
-('Đỗ Thị E', '2023-01-03', '0987654321', 'waiter', 2, 1),
-('Nguyễn Thị F', '2023-01-04', '0934567890', 'cashier', 3, 1),
-('Lê Văn G', '2023-01-05', '0976543210', 'waiter', 4, 1),
-('Trần Văn H', '2023-01-06', '0965432109', 'waiter', 5, 1);
+('Phạm Đình D', '2023-01-02', '0912345678', 'Quản lý', 1, 1),
+('Đỗ Thị E', '2023-01-03', '0987654321', 'Phục vụ', 2, 1),
+('Nguyễn Thị F', '2023-01-04', '0934567890', 'Thu ngân', 3, 1),
+('Lê Văn G', '2023-01-05', '0976543210', 'Phục vụ', 4, 1),
+('Trần Văn H', '2023-01-06', '0965432109', 'Phục vụ', 5, 1);
 
 INSERT INTO NhanVienKho (TenNV, NgayVL, SDT, Chucvu, ID_ND, ID_NQL)
 VALUES
-('Nguyễn Văn I', '2023-01-07', '0954321098', 'manager', 1, 1),
-('Trần Thị J', '2023-01-08', '0943210987', 'staff', 2, 1),
-('Lê Văn K', '2023-01-09', '0932109876', 'staff', 3, 1),
-('Phạm Thị L', '2023-01-10', '0921098765', 'staff', 4, 1),
-('Hoàng Văn M', '2023-01-11', '0910987654', 'staff', 5, 1);
+('Nguyễn Văn I', '2023-01-07', '0954321098', 'Quản lý', 1, 1),
+('Trần Thị J', '2023-01-08', '0943210987', 'Nhân viên', 2, 1),
+('Lê Văn K', '2023-01-09', '0932109876', 'Nhân viên', 3, 1),
+('Phạm Thị L', '2023-01-10', '0921098765', 'Nhân viên', 4, 1),
+('Hoàng Văn M', '2023-01-11', '0910987654', 'Nhân viên', 5, 1);
 
 INSERT INTO PhieuNK (ID_NV, NgayNK, Tongtien)
 VALUES
@@ -272,8 +273,20 @@ VALUES
 (1, 1, 1, '2023-06-01', 'SUMMER2023', 100000.00, 900000.00, 'Đã thanh toán'),
 (2, 2, 2, '2023-06-01', NULL, 0.00, 500000.00, 'Chưa thanh toán'),
 (3, 3, 3, '2023-06-02', 'WINTER2023', 150000.00, 850000.00, 'Đã thanh toán'),
-(4, 4, 4, '2023-06-02', 'SPRING2023', 200000.00, 800000.00, 'Chưa thanh toán'),
-(5, 5, 5, '2023-06-03', 'FALL2023', 250000.00, 750000.00, 'Đã thanh toán');
+(4, 4, 4, '2023-06-02', 'SPRING2023', 200000.00, 800000.00, 'Đã thanh toán'),
+(5, 5, 5, '2023-06-03', 'FALL2023', 250000.00, 750000.00, 'Đã thanh toán'),
+(1, 1, 1, '2023-06-01', 'SUMMER2023', 100000.00, 900000.00, 'Đã thanh toán'),
+(3, 3, 3, '2023-06-02', 'WINTER2023', 150000.00, 850000.00, 'Đã thanh toán'),
+(4, 4, 4, '2023-05-31', 'SPRING2023', 200000.00, 800000.00, 'Đã thanh toán'),
+(4, 4, 4, '2023-05-31', 'SPRING2023', 200000.00, 800000.00, 'Đã thanh toán'),
+(5, 5, 5, '2023-05-30', 'FALL2023', 250000.00, 750000.00, 'Đã thanh toán'),
+(5, 5, 5, '2023-05-30', 'FALL2023', 250000.00, 750000.00, 'Đã thanh toán'),
+(1, 1, 1, '2023-05-29', 'SUMMER2023', 100000.00, 900000.00, 'Đã thanh toán'),
+(1, 1, 1, '2023-05-29', 'SUMMER2023', 200000.00, 100000.00, 'Đã thanh toán'),
+(3, 3, 3, '2023-05-28', 'WINTER2023', 150000.00, 850000.00, 'Đã thanh toán'),
+(4, 4, 4, '2023-05-27', 'SPRING2023', 200000.00, 800000.00, 'Đã thanh toán'),
+(4, 4, 4, '2023-05-27', 'SUMMER2023', 300000.00, 900000.00, 'Đã thanh toán'),
+(5, 5, 5, '2023-05-026', 'FALL2023', 250000.00, 750000.00, 'Đã thanh toán');
 
 INSERT INTO CTNK (ID_NK, ID_NL, SoLuong, Thanhtien)
 VALUES
@@ -283,13 +296,13 @@ VALUES
 (4, 4, 40, 400000.00),
 (5, 5, 50, 500000.00);
 
-INSERT INTO MonAn (TenMon, DonGia, Loai, Trangthai, DauBep, ImageUrl)
+INSERT INTO MonAn (TenMon, DonGia, Loai, TrangThai, DauBep,DanhGia, ImageUrl)
 VALUES
-('Phở', 30000.00, 'Món chính', 'Còn hàng', 'Nguyễn Văn Chef1', 'images/pho.png'),
-('Cơm tấm', 40000.00, 'Món chính', 'Còn hàng', 'Trần Văn Chef2', 'images/comtam.png'),
-('Bún bò', 35000.00, 'Món chính', 'Hết hàng', 'Lê Thị Chef3', 'images/bunbo.png'),
-('Chả giò', 25000.00, 'Món khai vị', 'Còn hàng', 'Phạm Thị Chef4', 'images/chagio.png'),
-('Gỏi cuốn', 20000.00, 'Món khai vị', 'Còn hàng', 'Hoàng Văn Chef5', 'images/goicuon.png');
+('Phở', 30000.00, 'Món chính', 'Còn hàng', 'Nguyễn Văn Chef1', 4.5, 'images/pho.png'),
+('Cơm tấm', 40000.00, 'Món chính', 'Còn hàng', 'Trần Văn Chef2', 3.5, 'images/comtam.png'),
+('Bún bò', 35000.00, 'Món chính', 'Hết hàng', 'Lê Thị Chef3', 5, 'images/bunbo.png'),
+('Chả giò', 25000.00, 'Món khai vị', 'Còn hàng', 'Phạm Thị Chef4', 4, 'images/chagio.png'),
+('Gỏi cuốn', 20000.00, 'Món khai vị', 'Còn hàng', 'Hoàng Văn Chef5', 3, 'images/goicuon.png');
 
 INSERT INTO CTHD (ID_HoaDon, ID_MonAn, SoLuong, ThanhTien)
 VALUES

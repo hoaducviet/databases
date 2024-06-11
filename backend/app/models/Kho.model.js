@@ -7,7 +7,8 @@ const Kho = function (kho) {
 
 
 Kho.get_all = function(result){
-    db.query("SELECT * FROM Kho", function(err, kho){
+    const query = "SELECT NguyenLieu.ID_NL, NguyenLieu.TenNL, NguyenLieu.DonGia, NguyenLieu.DonViTinh, Kho.SLTon FROM NguyenLieu JOIN Kho ON NguyenLieu.ID_NL = Kho.ID_NL"
+    db.query(query, function(err, kho){
         if(err){
             result(err);
         } else {

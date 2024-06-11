@@ -1,5 +1,18 @@
-.row {
-    background-color: aquamarine;
-    height: 200px;
 
+.containerContent {
+    display: flex;
+    height: 100vh;
+    overflow: auto;
+  }
+  
+.sidebarContent {
+    flex: 0 0 20%; 
+    background-color: #ffffff; 
+    overflow-y: auto;
+  }
+
+.mainContent {
+    flex: 1; 
+    overflow-y: auto;
+    padding: 20px;
 }

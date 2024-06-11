@@ -1,11 +1,93 @@
-import { Link } from "react-router-dom";
-import clsx from 'clsx'
-import styles from  "./Sidebar.module.scss";
+import { Link, useLocation } from "react-router-dom";
+import clsx from "clsx";
+import styles from "./Sidebar.module.scss";
+
+import Paper from "@mui/material/Paper";
 
 function Sidebar() {
+  const location = useLocation();
+
   return (
     <>
-      <nav>
+      <div className="row p-2">
+        <img src="logo192.png" alt="logo" />
+      </div>
+      <nav className={styles.nav}>
+        <ul className={styles.ul}>
+          <li className={clsx(location.pathname === "/" && styles.active)}>
+            <Link to="/" className={styles.link}>
+              <div className={styles.item}>Dashboard</div>
+            </Link>
+          </li>
+          <li className={clsx(location.pathname === "/dish" && styles.active)}>
+            <Link to="/dish" className={styles.link}>
+              <div className={styles.item}>
+                <p>Món ăn</p>
+              </div>
+            </Link>
+          </li>
+          <li
+            className={clsx(location.pathname === "/customer" && styles.active)}
+          >
+            <Link to="/customer" className={styles.link}>
+              <div className={styles.item}>Khách hàng</div>
+            </Link>
+          </li>
+          <li
+            className={clsx(location.pathname === "/receipt" && styles.active)}
+          >
+            <Link to="/receipt" className={styles.link}>
+              <div className={styles.item}>Hoá đơn</div>
+            </Link>
+          </li>
+          <li
+            className={clsx(
+              location.pathname === "/staffwaiter" && styles.active
+            )}
+          >
+            <Link to="/staffwaiter" className={styles.link}>
+              <div className={styles.item}>Nhân viên bàn</div>
+            </Link>
+          </li>
+          <li
+            className={clsx(
+              location.pathname === "/staffstore" && styles.active
+            )}
+          >
+            <Link to="/staffstore" className={styles.link}>
+              <div className={styles.item}>Nhân viên kho</div>
+            </Link>
+          </li>
+          <li
+            className={clsx(
+              location.pathname === "/receivednote" && styles.active
+            )}
+          >
+            <Link to="/receivednote" className={styles.link}>
+              <div className={styles.item}>Thông tin nhập kho</div>
+            </Link>
+          </li>
+          <li
+            className={clsx(
+              location.pathname === "/deliverynote" && styles.active
+            )}
+          >
+            <Link to="/deliverynote" className={styles.link}>
+              <div className={styles.item}>Thông tin xuất kho</div>
+            </Link>
+          </li>
+          <li
+            className={clsx(
+              location.pathname === "/store" && styles.active
+            )}
+          >
+            <Link to="/store" className={styles.link}>
+              <div className={styles.item}>Kho Nguyên Liệu</div>
+            </Link>
+          </li>
+        </ul>
+      </nav>
+      {/* <nav>
           <ul>
             <li>
               <Link to="/">Dashboard</Link>
@@ -34,7 +116,7 @@ function Sidebar() {
 
             
           </ul>
-        </nav> 
+        </nav>  */}
     </>
   );
 }

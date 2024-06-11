@@ -19,6 +19,30 @@ MonAn.get_all = function(result){
 }
 
 
+MonAn.get_topRate = function(result){
+    const query = "SELECT * FROM MonAn ORDER BY DanhGia DESC LIMIT 4"
+    db.query(query, function(err, monan){
+        if(err){
+            result(err);
+        } else {
+            result(monan)
+        }
+    })
+}
+
+
+MonAn.get_topNumber = function(result){
+    const query = "SELECT MonAn.ID_MonAn, MonAn.TenMon, MonAn.DonGia, MonAn.Loai, MonAn.DauBep, SUM(CTHD.SoLuong) AS SoLuong FROM MonAn JOIN CTHD ON MonAn.ID_MonAn = CTHD.ID_MonAn GROUP BY MonAn.ID_MonAn ORDER BY SoLuong DESC LIMIT 4"
+    db.query(query, function(err, monan){
+        if(err){
+            result(err);
+        } else {
+            result(monan)
+        }
+    })
+}
+
+
 MonAn.getById = function(id, result) {
     console.log(id)
     db.query(`SELECT * FROM MonAn where id = ${id}`, function(err, user){

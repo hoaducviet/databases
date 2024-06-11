@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -32,48 +34,51 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function Staffwaiter() {
-  const [staffs, setStaffs] = useState([]);
+function Receiveditem() {
+  const [store, setStore] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:500/manager/staffwaiter")
+      .get("http://localhost:500/manager/store")
       .then((response) => {
-        setStaffs(response.data.data);
+        setStore(response.data.data);
       })
       .catch((error) => {
         console.error("There was an error!", error);
       });
   }, []);
-  console.log(staffs);
+
+
   return (
     <>
-      <h1>Danh Sách Nhân Viên Bàn</h1>
-      {staffs.length > 0 ? (
+      <h2>Thông Tin Nguyên Liệu Kho</h2>
+      {store.length > 0 ? (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>ID Nhân Viên</StyledTableCell>
-                <StyledTableCell align="left">Tên Nhân Viên</StyledTableCell>
-                <StyledTableCell align="left">Ngày Vào Làm</StyledTableCell>
-                <StyledTableCell align="left">SĐT</StyledTableCell>
-                <StyledTableCell align="left">Chức Vụ</StyledTableCell>
+                <StyledTableCell>ID_NL</StyledTableCell>
+                <StyledTableCell align="left">Tên NL</StyledTableCell>
+                <StyledTableCell align="left">Đơn Giá</StyledTableCell>
+                <StyledTableCell align="left">Đơn Vị Tính</StyledTableCell>
+                <StyledTableCell align="left">SL Tồn</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {staffs.map((staff, index) => (
+              {store.map((item, index) => (
                 <StyledTableRow key={index}>
                   <StyledTableCell component="th" scope="row">
-                    {staff.ID_NV}
+                    {item.ID_NL}
                   </StyledTableCell>
-                  <StyledTableCell align="left">{staff.TenNV}</StyledTableCell>
+                  <StyledTableCell align="left">{item.TenNL}</StyledTableCell>
                   <StyledTableCell align="left">
-                    {new Date(staff.NgayVL).toLocaleDateString()}
+                    {item.DonGia}
                   </StyledTableCell>
-                  <StyledTableCell align="left">{staff.SDT}</StyledTableCell>
                   <StyledTableCell align="left">
-                    {staff.Chucvu}
+                    {item.DonViTinh}
+                  </StyledTableCell>
+                  <StyledTableCell align="left">
+                    {item.SLTon}
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
@@ -87,4 +92,4 @@ function Staffwaiter() {
   );
 }
 
-export default Staffwaiter;
+export default Receiveditem;

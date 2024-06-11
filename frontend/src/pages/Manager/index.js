@@ -1,5 +1,6 @@
 import { Routes, Route, useMatch, Link } from "react-router-dom";
-import style from "./Manager.module.scss";
+import clsx from "clsx";
+import styles from "./Manager.module.scss";
 
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
@@ -8,45 +9,50 @@ import Footer from "./components/Footer";
 import Dashboard from "./Dashboard";
 import Dish from "./Dish";
 import Customer from "./Customer";
+import Receipt from "./Receipt";
+import Staffwaiter from "./Staffwaiter";
+import Staffstore from "./Staffstore";
+import Receivednote from "./Receivednote";
+import Deliverynote from "./Deliverynote";
+import Store from "./Store";
 import NotFound from "./NotFound";
+import Paper from '@mui/material/Paper';
 
 function Manager() {
   return (
     <>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Dashboard</Link>
-            </li>
-            <li>
-              <Link to="/manager/dish">Dish</Link>
-            </li>
-            <li>
-              <Link to="/customer">Customer</Link>
-            </li>
-            
-          </ul>
-        </nav>
-      </div>
-      <div className="container">
-        <div className="row">
-          <div className="col-3 bg-primary">
-            <Sidebar />
-          </div>
-          <div className="col-9 bg-secondary">
-            <div className="row bg-danger">
-              <Header />
+      <div className={styles.containerContent}>
+        <div className="container-fluid" style={{ padding: 20 }}>
+          <div className="row">
+            <div className="col-2 border-end">
+              <div className={styles.sidebarContent}>
+                <Sidebar />
+              </div>
             </div>
-            <div className="row bg-warning">
-              <Routes>
-                <Route path="/manager/" element={<Dashboard />} />
-                <Route path="/manager/dish" element={<Dish />} />
-                <Route path="/manager/customer" element={<Customer />} />
-              </Routes>
-            </div>
-            <div className="row">
-              <Footer />
+            <div className="col-10 ">
+              <div className="row ">
+              <Paper>
+                <Header />
+              </Paper>
+              </div>
+              <div className="row p-5">
+                <div className={styles.mainContent}>
+                  <Routes>
+                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/dish" element={<Dish />} />
+                    <Route path="/customer" element={<Customer />} />
+                    <Route path="/receipt" element={<Receipt />} />
+                    <Route path="/staffwaiter" element={<Staffwaiter />} />
+                    <Route path="/staffstore" element={<Staffstore />} />
+                    <Route path="/receivednote" element={<Receivednote />} />
+                    <Route path="/deliverynote" element={<Deliverynote />} />
+                    <Route path="/store" element={<Store />} />
+                  </Routes>
+                </div>
+              </div>
+              <div className="row">
+                <Footer />
+              </div>
             </div>
           </div>
         </div>
@@ -56,4 +62,3 @@ function Manager() {
 }
 
 export default Manager;
-
