@@ -39,7 +39,7 @@ HoaDon.get_chartWeek = function(result){
 
 
 HoaDon.getById = function(id, result) {
-    const query = `SELECT HoaDon.ID_HoaDon, KhachHang.TenKH, NhanVienBan.TenNV, Ban.TenBan, HoaDon.NgayHD, HoaDon.Tongtien, HoaDon.Trangthai FROM HoaDon JOIN KhachHang ON HoaDon.ID_KH = KhachHang.ID_KH JOIN NhanVienBan ON HoaDon.ID_NV = NhanVienBan.ID_NV JOIN Ban ON HoaDon.ID_Ban = Ban.ID_Ban WHERE HoaDon.ID_HoaDon = ${id}`
+    const query = `SELECT HoaDon.ID_HoaDon, KhachHang.TenKH, NhanVienBan.TenNV, Ban.TenBan, HoaDon.NgayHD, HoaDon.TienGiam, HoaDon.Tongtien, HoaDon.Trangthai FROM HoaDon JOIN KhachHang ON HoaDon.ID_KH = KhachHang.ID_KH JOIN NhanVienBan ON HoaDon.ID_NV = NhanVienBan.ID_NV JOIN Ban ON HoaDon.ID_Ban = Ban.ID_Ban WHERE HoaDon.ID_HoaDon = ${id}`
 
     db.query(query, function(err, user){
         if(err || user.length == 0){

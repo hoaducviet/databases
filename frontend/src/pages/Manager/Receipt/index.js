@@ -223,7 +223,7 @@ function Receipt() {
                     </tr>
                     <tr>
                       <td className={styles.td}>Tiền Giảm</td>
-                      <td className={styles.td}>{inforReceipt.Tiengiam}</td>
+                      <td className={styles.td}>{inforReceipt.TienGiam}</td>
                     </tr>
                     <tr>
                       <td className={styles.td}>Tổng Tiền</td>
