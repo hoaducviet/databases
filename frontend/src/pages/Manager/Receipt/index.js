@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ModalReceipt from "./ModalReceipt";
-
+import styles from "./Receipt.module.scss"
 import * as React from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
@@ -75,16 +75,16 @@ function Receipt() {
   useEffect(() => {
     const fetchData = async () => {
       const promise1 = axios.get(`http://localhost:500/manager/receipt/${id}`);
-      const promise2 = axios.get(`http://localhost:500/manager/receiptdetail/${id}`);
+      const promise2 = axios.get(
+        `http://localhost:500/manager/receiptdetail/${id}`
+      );
 
       return Promise.all([promise1, promise2])
         .then((responses) => {
           const [response1, response2] = responses;
-          console.log(response2.data.data);
 
-
-          setInforReceipt(response1.data);
-          // setInforReceiptDetail(response2.data);
+          setInforReceipt(response1.data.data);
+          setInforReceiptDetail(response2.data.data);
         })
         .catch((error) => {
           console.error("There was an error!", error);
@@ -166,6 +166,12 @@ function Receipt() {
           onClose={handleClose}
           aria-labelledby="customized-dialog-title"
           open={open}
+          PaperProps={{
+            style: {
+              width: "500px", // Chiều rộng tùy chỉnh
+              height: "550px", // Chiều cao tùy chỉnh
+            },
+          }}
         >
           <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
             <h5>Chi Tiết Hoá Đơn</h5>
@@ -186,62 +192,76 @@ function Receipt() {
             <Typography gutterBottom>
               <h5>Thông tin khách hàng</h5>
               <br />
-              <p>Khách hàng: {inforReceipt.TenKH}</p>
-              <br />
-              <p>Bàn: {inforReceipt.TenBan}</p>
-              <br />
-              <p>Ngày thanh toán: {inforReceipt.NgayHD}</p>
-              <br />
-              <p>Nhân viên phục vụ: {inforReceipt.TenNV}</p>
-              <br />
-              <p>ID hoá đơn: {inforReceipt.ID_HoaDon}</p>
-              <br />
-              <p>Trạng thái: {inforReceipt.Trangthai}</p>
-              <br />
-            </Typography>
-            <Typography gutterBottom>
-              <h5>Thông tin mặt hàng</h5>
-              <br />
-
-              {inforReceiptDetail.length > 0 ? (
-                <TableContainer component={Paper}>
-                  <Table
-                    aria-label="customized table"
-                  >
-                    <TableHead>
-                      <TableRow>
-                        <StyledTableCell>Tên Món</StyledTableCell>
-                        <StyledTableCell align="left">Số Lượng</StyledTableCell>
-                        <StyledTableCell align="left">
-                          Thành Tiền
-                        </StyledTableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {inforReceiptDetail.map((item,index) => (
-                        <StyledTableRow key={index}>
-                          <StyledTableCell component="th" scope="row">
-                            {item.TenMon}
-                          </StyledTableCell>
-                          <StyledTableCell align="left">
-                            {item.SoLuong}
-                          </StyledTableCell>
-                          <StyledTableCell align="left">
-                            {item.ThanhTien}
-                          </StyledTableCell>
-                        </StyledTableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
+              {inforReceipt && Object.keys(inforReceipt).length > 0 ? (
+                <table>
+                  <tbody>
+                    <tr>
+                      <td className={styles.td}>Khách hàng </td>
+                      <td className={styles.td}> {inforReceipt.TenKH}</td>
+                    </tr>
+                    <tr>
+                      <td className={styles.td}>Bàn</td>
+                      <td className={styles.td}>{inforReceipt.TenBan}</td>
+                    </tr>
+                    <tr>
+                      <td className={styles.td}>Ngày</td>
+                      <td className={styles.td}>
+                        {new Date(inforReceipt.NgayHD).toLocaleDateString()}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className={styles.td}>Phục Vụ</td>
+                      <td className={styles.td}>{inforReceipt.TenNV}</td>
+                    </tr>
+                    <tr>
+                      <td className={styles.td}>ID Hoá Đơn</td>
+                      <td className={styles.td}>{inforReceipt.ID_HoaDon}</td>
+                    </tr>
+                    <tr>
+                      <td className={styles.td}>Trạng Thái</td>
+                      <td className={styles.td}>{inforReceipt.Trangthai}</td>
+                    </tr>
+                    <tr>
+                      <td className={styles.td}>Tiền Giảm</td>
+                      <td className={styles.td}>{inforReceipt.Tiengiam}</td>
+                    </tr>
+                    <tr>
+                      <td className={styles.td}>Tổng Tiền</td>
+                      <td className={styles.td}>{inforReceipt.Tongtien}</td>
+                    </tr>
+                  </tbody>
+                </table>
               ) : (
-                <p>Loading...</p>
+                <p>Loading </p>
               )}
-
             </Typography>
-            <Typography gutterBottom>
-              <p>Tiền giảm: {inforReceipt.Tiengiam}</p><br/>
-              <p>Tổng Tiền: {inforReceipt.Tongtien}</p><br/>
+            <Typography gutterBottom >
+              <h5 >Thông tin mặt hàng</h5>
+              <br />
+
+              {inforReceiptDetail &&
+              Object.keys(inforReceiptDetail).length > 0 ? (
+                <table>
+                  <thead>
+                    <tr>
+                      <td className={styles.td}>Tên món ăn</td>
+                      <td className={styles.td}>Số Lượng</td>
+                      <td className={styles.td}>Thành Tiền(VND)</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[inforReceiptDetail].map((dish, index) => (
+                      <tr key={index}>
+                        <td className={styles.td}>{dish.TenMon}</td>
+                        <td className={styles.td}>{dish.SoLuong}</td>
+                        <td className={styles.td}>{dish.ThanhTien}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <p>Không có món ăn nào</p>
+              )}
             </Typography>
           </DialogContent>
           <DialogActions>
