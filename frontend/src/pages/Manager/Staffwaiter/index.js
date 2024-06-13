@@ -45,7 +45,7 @@ function Staffwaiter() {
         console.error("There was an error!", error);
       });
   }, []);
-  console.log(staffs);
+  
   return (
     <>
       <h1>Danh Sách Nhân Viên Bàn</h1>

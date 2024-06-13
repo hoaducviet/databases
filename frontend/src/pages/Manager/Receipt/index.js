@@ -232,7 +232,7 @@ function Receipt() {
                   </tbody>
                 </table>
               ) : (
-                <p>Loading </p>
+                <p>Chưa có thông tin khách hàng </p>
               )}
             </Typography>
             <Typography gutterBottom >

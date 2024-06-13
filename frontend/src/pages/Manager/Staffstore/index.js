@@ -45,7 +45,7 @@ function Staffstore() {
         console.error("There was an error!", error);
       });
   }, []);
-  console.log(staffs);
+ 
 
   return (
     <>

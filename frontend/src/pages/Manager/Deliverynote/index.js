@@ -45,7 +45,7 @@ function Deliverynote() {
         console.error("There was an error!", error);
       });
   }, []);
-  console.log(deliverynote);
+ 
   return (
     <>
       <h2>Thông Tin Phiếu Xuất Kho</h2>
