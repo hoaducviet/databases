@@ -7,20 +7,23 @@ var NhanVienBan = require('../models/NhanVienBan.model');
 var NhanVienKho = require('../models/NhanVienKho.model');
 var PhieuNK = require('../models/PhieuNK.model');
 var PhieuXK = require('../models/PhieuXK.model');
+var CTNK = require('../models/CTNK.model');
+var CTXK = require('../models/CTXK.model');
+
 var Kho = require('../models/Kho.model');
+var Voucher = require('../models/Voucher.model');
+var Ban = require('../models/Ban.model');
 
 // Dashboard
 
 exports.get_topRateMonAn = function(req, res){
     MonAn.get_topRate(function(data){
-        console.log(data)
         res.send({data})
     })
 }
 
 exports.get_topNumberMonAn = function(req, res){
     MonAn.get_topNumber(function(data){
-        console.log(data)
         res.send({data})
     })
 }
@@ -103,9 +106,36 @@ exports.get_KhoNL = function(req, res){
 }
 
 
+exports.get_Voucher = function(req, res){
+    Voucher.get_all(function(data){
+        res.send({data})
+    })
+}
+
+
+exports.get_Ban = function(req, res){
+    Ban.get_all(function(data){
+        res.send({data})
+    })
+}
+
 
 exports.get_CTHDById = function(req, res){
     CTHD.getById(req.params.id, function(respnse){
+        res.send({data: respnse})
+    })
+}
+
+
+exports.get_CTNKById = function(req, res){
+    CTNK.getById(req.params.id, function(respnse){
+        res.send({data: respnse})
+    })
+}
+
+
+exports.get_CTXKById = function(req, res){
+    CTXK.getById(req.params.id, function(respnse){
         res.send({data: respnse})
     })
 }

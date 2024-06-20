@@ -5,24 +5,21 @@ import OverView from "./Overview";
 import YearlyBreakup from "./YearlyBreakup";
 import MonthlyEarnigs from "./MonthlyEarnigs";
 
-import Paper from '@mui/material/Paper';
+import Paper from "@mui/material/Paper";
 
 function Dashboard() {
-  
-  
   return (
     <>
-      <div className="row">
-       
-            <h2>Doanh thu 7 ngày gần nhất</h2>
-          <OverView />
+      <div className="row p-3">
+        <TopDishRate />
       </div>
       <div className="row p-3">
         <h2>Top món ăn bán chạy nhất</h2>
-          <TopDishNumber />
+        <TopDishNumber />
       </div>
-      <div className="row p-3">
-        <TopDishRate />
+      <div className="row">
+        <h2>Doanh thu 7 ngày gần nhất</h2>
+        <OverView />
       </div>
     </>
   );

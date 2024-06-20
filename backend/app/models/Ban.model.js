@@ -14,7 +14,7 @@ Ban.get_all = function(result){
             result(ban)
         }
     })
-}
+} 
 
 
 Ban.getById = function(id, result) {

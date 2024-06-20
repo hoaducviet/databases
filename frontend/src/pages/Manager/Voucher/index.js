@@ -32,50 +32,43 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function Dish() {
-  const [dishes, setDishes] = useState([]);
+function Voucher() {
+  const [voucher, setVoucher] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:500/manager/dish")
+      .get("http://localhost:500/manager/voucher")
       .then((response) => {
-        setDishes(response.data.data);
+        setVoucher(response.data.data);
       })
       .catch((error) => {
         console.error("There was an error!", error);
       });
   }, []);
 
-
   return (
     <>
-      <h1>Danh sách món ăn</h1>
-      {dishes.length > 0 ? (
+      <h2>Thông Tin Nguyên Liệu Kho</h2>
+      {voucher.length > 0 ? (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>IDn</StyledTableCell>
+                <StyledTableCell>Code Voucher</StyledTableCell>
+                <StyledTableCell align="left">Mô tả</StyledTableCell>
+                <StyledTableCell align="left">Phần trăm</StyledTableCell>
                 <StyledTableCell align="left">Loại</StyledTableCell>
-                <StyledTableCell align="left">Tên Món</StyledTableCell>
-                <StyledTableCell align="left">Đầu Bếp</StyledTableCell>
-                <StyledTableCell align="left">Trạng Thái</StyledTableCell>
-                <StyledTableCell align="left">Đơn Giá</StyledTableCell>
+                <StyledTableCell align="left">Số Lượng</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {dishes.map((dish, index) => (
+              {voucher.map((item, index) => (
                 <StyledTableRow key={index}>
-                  <StyledTableCell component="th" scope="row">
-                    {dish.ID_MonAn}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">{dish.Loai}</StyledTableCell>
-                  <StyledTableCell align="left">{dish.TenMon}</StyledTableCell>
-                  <StyledTableCell align="left">{dish.DauBep}</StyledTableCell>
-                  <StyledTableCell align="left">
-                    {dish.TrangThai}
-                  </StyledTableCell>
-                  <StyledTableCell align="left">{dish.DonGia}</StyledTableCell>
+                  <StyledTableCell component="th" scope="row">{item.Code_Voucher}</StyledTableCell>
+                  <StyledTableCell align="left">{item.Mota}</StyledTableCell>
+                  <StyledTableCell align="left">{item.Phantram}</StyledTableCell>
+                  <StyledTableCell align="left">{item.LoaiMA}</StyledTableCell>
+                  <StyledTableCell align="left">{item.SoLuong}</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
@@ -88,4 +81,4 @@ function Dish() {
   );
 }
 
-export default Dish;
+export default Voucher;

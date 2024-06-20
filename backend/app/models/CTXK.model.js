@@ -6,24 +6,13 @@ const CTXK = function (ctxk) {
 }
 
 
-CTXK.get_all = function(result){
-    db.query("SELECT * FROM CTXK", function(err, cthd){
-        if(err){
-            result(err);
-        } else {
-            result(cthd)
-        }
-    })
-}
-
 
 CTXK.getById = function(id, result) {
-    console.log(id)
-    db.query(`SELECT * FROM CTHD where id_hoadon = ${id}`, function(err, user){
+    db.query(`SELECT * FROM VIEWCTXK WHERE ID_XK = ${id}`, function(err, user){
         if(err || user.length == 0){
             result(null);
         } else {
-            result(user[0]);
+            result(user);
         }
     })
 }

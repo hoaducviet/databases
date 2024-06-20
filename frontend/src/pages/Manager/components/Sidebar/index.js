@@ -85,6 +85,24 @@ function Sidebar() {
               <div className={styles.item}>Kho Nguyên Liệu</div>
             </Link>
           </li>
+          <li
+            className={clsx(
+              location.pathname === "/voucher" && styles.active
+            )}
+          >
+            <Link to="/voucher" className={styles.link}>
+              <div className={styles.item}>Voucher</div>
+            </Link>
+          </li>
+          <li
+            className={clsx(
+              location.pathname === "/table" && styles.active
+            )}
+          >
+            <Link to="/table" className={styles.link}>
+              <div className={styles.item}>Bàn</div>
+            </Link>
+          </li>
         </ul>
       </nav>
       {/* <nav>

@@ -15,6 +15,8 @@ import Staffstore from "./Staffstore";
 import Receivednote from "./Receivednote";
 import Deliverynote from "./Deliverynote";
 import Store from "./Store";
+import Voucher from "./Voucher";
+import Table from "./Table";
 import NotFound from "./NotFound";
 import Paper from '@mui/material/Paper';
 
@@ -47,6 +49,8 @@ function Manager() {
                     <Route path="/receivednote" element={<Receivednote />} />
                     <Route path="/deliverynote" element={<Deliverynote />} />
                     <Route path="/store" element={<Store />} />
+                    <Route path="/voucher" element={<Voucher />} />
+                    <Route path="/table" element={<Table />} />
                   </Routes>
                 </div>
               </div>

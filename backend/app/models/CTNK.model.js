@@ -7,24 +7,14 @@ const CTNK = function (ctnk) {
 }
 
 
-CTNK.get_all = function(result){
-    db.query("SELECT * FROM CTNK", function(err, cthd){
-        if(err){
-            result(err);
-        } else {
-            result(cthd)
-        }
-    })
-}
-
 
 CTNK.getById = function(id, result) {
     console.log(id)
-    db.query(`SELECT * FROM CTHD where id_hoadon = ${id}`, function(err, user){
+    db.query(`SELECT * FROM VIEWCTNK WHERE ID_NK = ${id}`, function(err, user){
         if(err || user.length == 0){
             result(null);
         } else {
-            result(user[0]);
+            result(user);
         }
     })
 }

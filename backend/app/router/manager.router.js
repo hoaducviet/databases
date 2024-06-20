@@ -18,8 +18,14 @@ router.get("/manager/dish", managerController.get_MonAn)
 router.get("/manager/staffwaiter", managerController.get_NhanVienBan)
 router.get("/manager/staffstore", managerController.get_NhanVienKho)
 router.get("/manager/receivednote", managerController.get_PhieuNK)
+router.get("/manager/receivednotedetail/:id", managerController.get_CTNKById)
+
 router.get("/manager/deliverynote", managerController.get_PhieuXK)
-router.get("/manager/store", managerController.get_KhoNL)
+router.get("/manager/deliverynotedetail/:id", managerController.get_CTXKById)
+
+router.get("/manager/store", managerController.get_KhoNL) 
+router.get("/manager/voucher", managerController.get_Voucher)
+router.get("/manager/table", managerController.get_Ban)
 
 
 

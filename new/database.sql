@@ -1,10 +1,4 @@
 DROP DATABASE IF EXISTS mysql_res;
-DROP ROLE IF EXISTS 'manager', 'ware_house_staff', 'table_staff', 'developer';
-DROP USER IF EXISTS 'manager'@'localhost';
-DROP USER IF EXISTS 'table_staff'@'localhost';
-DROP USER IF EXISTS 'ware_house_staff'@'localhost';
-DROP USER IF EXISTS 'developer'@'localhost';
-
 CREATE DATABASE mysql_res;
 use mysql_res;
 
@@ -354,7 +348,7 @@ END$$
 DELIMITER ;
 
 -- Tạo Hoá Đơn Khi gọi món
-DELIMITER $$
+
 CREATE PROCEDURE NewOrder (
 	IN p_IDBan INT,
     IN p_IDNV INT
@@ -435,8 +429,6 @@ END$$
 DELIMITER ;
 
 -- Hoàn thành phiếu XK 
-
-DELIMITER $$
 CREATE PROCEDURE SaveExportInvoice (
     IN p_IDXK INT
 )
@@ -694,7 +686,7 @@ DELIMITER ;
 
 -- View HoaDon
 CREATE VIEW ViewHoaDon AS
-SELECT HoaDon.ID_HoaDon, NhanVienBan.TenNV, KhachHang.TenKH, Ban.TenBan, HoaDon.Code_Voucher, HoaDon.NgayHD, HoaDon.TienMonAn, HoaDon.TienGiam, HoaDon.TongTien, HoaDon.TrangThai
+SELECT HoaDon.ID_HoaDon, NhanVienBan.TenNV, KhachHang.TenKH, Ban.TenBan, HoaDon.Code_Voucher, HoaDon.TienMonAn, HoaDon.TienGiam, HoaDon.TongTien, HoaDon.TrangThai
 FROM HoaDon
 JOIN NhanVienBan ON HoaDon.ID_NV = NhanVienBan.ID_NV
 JOIN KhachHang ON HoaDon.ID_KH = KhachHang.ID_KH
@@ -712,7 +704,7 @@ JOIN MonAn ON CTHD.ID_MonAn = MonAn.ID_MonAn;
 
 
 CREATE VIEW ViewNhanVienBan AS
-SELECT NhanVienBan.ID_NV, NhanVienBan.TenNV, NguoiDung.Email ,NhanVienBan.SDT, NhanVienBan.NgayVL, NhanVienBan.ChucVu
+SELECT NhanVienBan.ID_NV, NhanVienBan.TenNV, NguoiDung.Email, NhanVienBan.NgayVL, NhanVienBan.ChucVu
 FROM NhanVienBan
 JOIN NguoiDung ON NhanVienBan.ID_ND = NguoiDung.ID_ND;
 
@@ -720,7 +712,7 @@ JOIN NguoiDung ON NhanVienBan.ID_ND = NguoiDung.ID_ND;
 -- View NhanVienKho
 
 CREATE VIEW ViewNhanVienKho AS
-SELECT NhanVienKho.ID_NV, NhanVienKho.TenNV, NguoiDung.Email, NhanVienKho.SDT, NhanVienKho.NgayVL, NhanVienKho.ChucVu
+SELECT NhanVienKho.ID_NV, NhanVienKho.TenNV, NguoiDung.Email, NhanVienKho.NgayVL, NhanVienKho.ChucVu
 FROM NhanVienKho
 JOIN NguoiDung ON NhanVienKho.ID_ND = NguoiDung.ID_ND;
 
@@ -786,7 +778,7 @@ CREATE INDEX idx_tennl ON NguyenLieu(TenNL);
 CREATE INDEX idx_ngaynk ON PhieuNK(NgayNK);
 
 -- Tạo chỉ mục cho bảng PhieuXK trên cột NgayNK
-CREATE INDEX idx_ngayxk ON PhieuXK(NgayXK);
+CREATE INDEX idx_ngayxk ON PhieuXK(NgayNK);
 
 -- Tạo chỉ mục cho bảng Ban trên cột Vitri
 CREATE INDEX idx_vitri ON Ban(Vitri);
@@ -821,10 +813,10 @@ GRANT INSERT, SELECT, UPDATE ON mysql_res.CTXK TO ware_house_staff;
 GRANT INSERT, SELECT, UPDATE ON mysql_res.NguyenLieu TO ware_house_staff;
 
 -- Tạo các tài khoản truy cập cơ sở dữ liệu
-CREATE USER manager@localhost IDENTIFIED WITH mysql_native_password BY 'manager123';
-CREATE USER table_staff@localhost IDENTIFIED WITH mysql_native_password BY 'tablestaff123';
-CREATE USER ware_house_staff@localhost IDENTIFIED WITH mysql_native_password BY 'warehousestaff123';
-CREATE USER developer@localhost IDENTIFIED WITH mysql_native_password BY 'developer123';
+CREATE USER manager@localhost IDENTIFIED BY 'manager123';
+CREATE USER table_staff@localhost IDENTIFIED BY 'tablestaff123';
+CREATE USER ware_house_staff@localhost IDENTIFIED BY 'warehousestaff123';
+CREATE USER developer@localhost IDENTIFIED BY 'developer123';
 
 -- Cấp quyền cho các tài khoản
 GRANT manager TO manager@localhost;
@@ -911,14 +903,6 @@ VALUES
 ('Gỏi cuốn', 20000.00, 'Món khai vị', 'Còn hàng', 'Hoàng Văn Thanh', 3, 'images/goicuon.png');
 
 
-INSERT INTO HoaDon (ID_NV, ID_KH, ID_Ban, NgayHD, Code_Voucher, TrangThai)
-VALUES
-(5, 1, 5, '2023-01-21', 'SUMMER2023', 'Đã thanh toán'),
-(1, 2, 1, '2023-11-12', 'WINTER2023', 'Đã thanh toán'),
-(4, 3, 2, '2023-09-18', 'FALL2023', 'Đã thanh toán'),
-(4, 4, 2, '2023-03-05', 'NEWYEAR2023', 'Đã thanh toán'),
-(5, 5, 3, '2023-02-11', 'NEWYEAR2023', 'Đã thanh toán');
-
 
 INSERT INTO HoaDon (ID_NV, ID_Ban)
 VALUES
@@ -957,15 +941,13 @@ VALUES
 
 
 
-INSERT INTO PhieuNK (ID_NV, NgayNK, TrangThai)
+INSERT INTO PhieuNK (ID_NV)
 VALUES
-(1, '2023-06-20', 'Hoàn thành'),
-(2, '2024-01-21', 'Hoàn thành'),
-(3, '2024-06-21', 'Hoàn thành'),
-(4, '2024-03-08', 'Hoàn thành'),
-(5, '2023-12-19', 'Hoàn thành');
-
-
+(1),
+(2),
+(3),
+(4),
+(5);
 
 INSERT INTO CTNK (ID_NK, ID_NL, SoLuong)
 VALUES
@@ -973,22 +955,16 @@ VALUES
 (2, 2, 20),
 (3, 3, 30),
 (4, 4, 40),
-(5, 5, 50),
-(1, 2, 10),
-(2, 4, 20),
-(3, 1, 30),
-(4, 3, 40),
-(5, 1, 50);
+(5, 5, 50);
 
 
-
-INSERT INTO PhieuXK (ID_NV,  NgayXK, TrangThai)
+INSERT INTO PhieuXK (ID_NV)
 VALUES
-(1, '2023-06-30', 'Hoàn thành'),
-(2, '2024-05-22', 'Hoàn thành'),
-(3, '2024-08-29', 'Hoàn thành'),
-(4, '2024-11-13', 'Hoàn thành'),
-(5, '2024-06-12', 'Hoàn thành');
+(1),
+(2),
+(3),
+(4),
+(5);
 
 INSERT INTO CTXK (ID_XK, ID_NL, SoLuong)
 VALUES

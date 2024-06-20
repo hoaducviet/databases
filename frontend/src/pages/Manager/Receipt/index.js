@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ModalReceipt from "./ModalReceipt";
-import styles from "./Receipt.module.scss"
+import styles from "./Receipt.module.scss";
 import * as React from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
@@ -12,6 +11,7 @@ import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -37,7 +37,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     backgroundColor: theme.palette.action.hover,
   },
   "&:hover": {
-    backgroundColor: "#a3d4f5",
+    backgroundColor: "#a6a6a6",
   },
   // hide last border
   "&:last-child td, &:last-child th": {
@@ -73,26 +73,16 @@ function Receipt() {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const promise1 = axios.get(`http://localhost:500/manager/receipt/${id}`);
-      const promise2 = axios.get(
-        `http://localhost:500/manager/receiptdetail/${id}`
-      );
-
-      return Promise.all([promise1, promise2])
-        .then((responses) => {
-          const [response1, response2] = responses;
-
-          setInforReceipt(response1.data.data);
-          setInforReceiptDetail(response2.data.data);
-        })
-        .catch((error) => {
-          console.error("There was an error!", error);
-        });
-    };
-
-    fetchData();
-  }, [id]);
+    setInforReceipt(...receipts.filter((item) => item.ID_HoaDon === id));
+    axios
+      .get(`http://localhost:500/manager/receiptdetail/${id}`)
+      .then((response) => {
+        setInforReceiptDetail(response.data.data);
+      })
+      .catch((error) => {
+        console.error("There was an error!", error);
+      });
+  }, [id, receipts]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -113,7 +103,7 @@ function Receipt() {
           >
             <TableHead>
               <TableRow>
-                <StyledTableCell>ID</StyledTableCell>
+                <StyledTableCell>ID Hoá Đơn</StyledTableCell>
                 <StyledTableCell align="left">Tên Nhân Viên</StyledTableCell>
                 <StyledTableCell align="left">Tên Khách Hàng</StyledTableCell>
                 <StyledTableCell align="left">Bàn</StyledTableCell>
@@ -148,10 +138,10 @@ function Receipt() {
                   </StyledTableCell>
 
                   <StyledTableCell align="left">
-                    {receipt.Tongtien}
+                    {receipt.TongTien}
                   </StyledTableCell>
                   <StyledTableCell align="left">
-                    {receipt.Trangthai}
+                    {receipt.TrangThai}
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
@@ -168,7 +158,7 @@ function Receipt() {
           open={open}
           PaperProps={{
             style: {
-              width: "500px", // Chiều rộng tùy chỉnh
+              width: "550px", // Chiều rộng tùy chỉnh
               height: "550px", // Chiều cao tùy chỉnh
             },
           }}
@@ -206,7 +196,17 @@ function Receipt() {
                     <tr>
                       <td className={styles.td}>Ngày</td>
                       <td className={styles.td}>
-                        {new Date(inforReceipt.NgayHD).toLocaleDateString()}
+                        {new Date(inforReceipt.NgayHD).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "2-digit",
+                            day: "2-digit",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            second: "2-digit",
+                          }
+                        )}
                       </td>
                     </tr>
                     <tr>
@@ -219,7 +219,11 @@ function Receipt() {
                     </tr>
                     <tr>
                       <td className={styles.td}>Trạng Thái</td>
-                      <td className={styles.td}>{inforReceipt.Trangthai}</td>
+                      <td className={styles.td}>{inforReceipt.TrangThai}</td>
+                    </tr>
+                    <tr>
+                      <td className={styles.td}>Tiền Món Ăn</td>
+                      <td className={styles.td}>{inforReceipt.TienMonAn}</td>
                     </tr>
                     <tr>
                       <td className={styles.td}>Tiền Giảm</td>
@@ -227,7 +231,7 @@ function Receipt() {
                     </tr>
                     <tr>
                       <td className={styles.td}>Tổng Tiền</td>
-                      <td className={styles.td}>{inforReceipt.Tongtien}</td>
+                      <td className={styles.td}>{inforReceipt.TongTien}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -235,8 +239,8 @@ function Receipt() {
                 <p>Chưa có thông tin khách hàng </p>
               )}
             </Typography>
-            <Typography gutterBottom >
-              <h5 >Thông tin mặt hàng</h5>
+            <Typography gutterBottom>
+              <h5>Thông tin mặt hàng</h5>
               <br />
 
               {inforReceiptDetail &&
@@ -246,14 +250,16 @@ function Receipt() {
                     <tr>
                       <td className={styles.td}>Tên món ăn</td>
                       <td className={styles.td}>Số Lượng</td>
+                      <td className={styles.td}>Đơn Giá</td>
                       <td className={styles.td}>Thành Tiền(VND)</td>
                     </tr>
                   </thead>
                   <tbody>
-                    {[inforReceiptDetail].map((dish, index) => (
+                    {inforReceiptDetail.map((dish, index) => (
                       <tr key={index}>
                         <td className={styles.td}>{dish.TenMon}</td>
                         <td className={styles.td}>{dish.SoLuong}</td>
+                        <td className={styles.td}>{dish.DonGia}</td>
                         <td className={styles.td}>{dish.ThanhTien}</td>
                       </tr>
                     ))}

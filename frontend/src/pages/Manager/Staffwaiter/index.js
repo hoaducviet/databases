@@ -58,6 +58,7 @@ function Staffwaiter() {
                 <StyledTableCell align="left">Tên Nhân Viên</StyledTableCell>
                 <StyledTableCell align="left">Ngày Vào Làm</StyledTableCell>
                 <StyledTableCell align="left">SĐT</StyledTableCell>
+                <StyledTableCell align="left">Email</StyledTableCell>
                 <StyledTableCell align="left">Chức Vụ</StyledTableCell>
               </TableRow>
             </TableHead>
@@ -72,8 +73,9 @@ function Staffwaiter() {
                     {new Date(staff.NgayVL).toLocaleDateString()}
                   </StyledTableCell>
                   <StyledTableCell align="left">{staff.SDT}</StyledTableCell>
+                  <StyledTableCell align="left">{staff.Email}</StyledTableCell>
                   <StyledTableCell align="left">
-                    {staff.Chucvu}
+                    {staff.ChucVu}
                   </StyledTableCell>
                 </StyledTableRow>
               ))}

@@ -11,7 +11,7 @@ const NhanVienKho = function (nhanvienkho) {
 
 
 NhanVienKho.get_all = function(result){
-    db.query("SELECT * FROM NhanVienKho", function(err, nhanvienkho){
+    db.query("SELECT * FROM ViewNhanVienKho", function(err, nhanvienkho){
         if(err){
             result(err);
         } else {

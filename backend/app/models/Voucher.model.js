@@ -9,7 +9,7 @@ const Voucher = function (voucher) {
 }
 
 Voucher.get_all = function(result){
-    db.query("SELECT * FROM Ban", function(err, voucher){
+    db.query("SELECT * FROM Voucher", function(err, voucher){
         if(err){
             result(err);
         } else {

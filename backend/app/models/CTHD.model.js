@@ -7,24 +7,15 @@ const CTHD = function (cthd) {
 }
 
 
-CTHD.get_all = function(result){
-    db.query("SELECT * FROM CTHD", function(err, cthd){
-        if(err){
-            result(err);
-        } else {
-            result(cthd)
-        }
-    })
-}
-
 
 CTHD.getById = function(id, result) {
-    const query = `SELECT HoaDon.ID_HoaDon, MonAn.TenMon, CTHD.SoLuong, CTHD.ThanhTien FROM CTHD JOIN HoaDon ON CTHD.ID_HoaDon = HoaDon.ID_HoaDon JOIN MonAn ON CTHD.ID_MonAn = MonAn.ID_MonAn WHERE HoaDon.ID_HoaDon=${id}`
+    const query = `SELECT * FROM ViewCTHD WHERE ID_HoaDon = ${id}`
     db.query(query, function(err, user){
         if(err || user.length == 0){
             result(null);
         } else {
-            result(user[0]);
+            console.log(user) 
+            result(user);
         }
     })
 }

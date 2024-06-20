@@ -34,7 +34,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function Receiveditem() {
+function Store() {
   const [store, setStore] = useState([]);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ function Receiveditem() {
                     {item.DonGia}
                   </StyledTableCell>
                   <StyledTableCell align="left">
-                    {item.DonViTinh}
+                    {item.Donvitinh}
                   </StyledTableCell>
                   <StyledTableCell align="left">
                     {item.SLTon}
@@ -92,4 +92,4 @@ function Receiveditem() {
   );
 }
 
-export default Receiveditem;
+export default Store;

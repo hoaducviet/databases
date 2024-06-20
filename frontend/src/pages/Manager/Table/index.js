@@ -32,50 +32,45 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function Dish() {
-  const [dishes, setDishes] = useState([]);
+function TableRestaurant() {
+  const [table, setTable] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:500/manager/dish")
+      .get("http://localhost:500/manager/table")
       .then((response) => {
-        setDishes(response.data.data);
+        setTable(response.data.data);
       })
       .catch((error) => {
         console.error("There was an error!", error);
       });
   }, []);
 
-
   return (
     <>
-      <h1>Danh sách món ăn</h1>
-      {dishes.length > 0 ? (
+      <h2>Thông Tin Nguyên Liệu Kho</h2>
+      {table.length > 0 ? (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
-                <StyledTableCell>IDn</StyledTableCell>
-                <StyledTableCell align="left">Loại</StyledTableCell>
-                <StyledTableCell align="left">Tên Món</StyledTableCell>
-                <StyledTableCell align="left">Đầu Bếp</StyledTableCell>
+                <StyledTableCell>ID_Ban</StyledTableCell>
+                <StyledTableCell align="left">Tên Ban</StyledTableCell>
+                <StyledTableCell align="left">Vị Trí</StyledTableCell>
                 <StyledTableCell align="left">Trạng Thái</StyledTableCell>
-                <StyledTableCell align="left">Đơn Giá</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {dishes.map((dish, index) => (
+              {table.map((item, index) => (
                 <StyledTableRow key={index}>
                   <StyledTableCell component="th" scope="row">
-                    {dish.ID_MonAn}
+                    {item.ID_Ban}
                   </StyledTableCell>
-                  <StyledTableCell align="left">{dish.Loai}</StyledTableCell>
-                  <StyledTableCell align="left">{dish.TenMon}</StyledTableCell>
-                  <StyledTableCell align="left">{dish.DauBep}</StyledTableCell>
+                  <StyledTableCell align="left">{item.TenBan}</StyledTableCell>
+                  <StyledTableCell align="left">{item.ViTri}</StyledTableCell>
                   <StyledTableCell align="left">
-                    {dish.TrangThai}
+                    {item.TrangThai}
                   </StyledTableCell>
-                  <StyledTableCell align="left">{dish.DonGia}</StyledTableCell>
                 </StyledTableRow>
               ))}
             </TableBody>
@@ -88,4 +83,4 @@ function Dish() {
   );
 }
 
-export default Dish;
+export default TableRestaurant;
